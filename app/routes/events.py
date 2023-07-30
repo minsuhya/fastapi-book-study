@@ -35,6 +35,7 @@ async def create_event(body: Event) -> dict:
 
 
 # update event
+@event_router.put("/{id}")
 async def update_event(id: PydanticObjectId, body: EventUpdate) -> Event:
     event = await event_database.update(id, body)
     if not event:
