@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 
 class Event(Document):
+    creator: Optional[str]
     title: str
     image: str
     description: str
@@ -17,6 +18,7 @@ class Event(Document):
     class Config:
         json_schema_extra = {
             "example": {
+                "creator": "Creator",
                 "title": "Evento 1",
                 "image": "https://i.imgur.com/4NZ6uLY.jpg",
                 "description": "Evento 1",

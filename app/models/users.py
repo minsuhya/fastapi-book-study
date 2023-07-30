@@ -31,6 +31,12 @@ class User(Document):
         name = "users"
 
 
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+
+
+# 토큰을 적용함으로서 응답모델로 사용하지 않는다.
 class UserSignIn(BaseModel):
     """UserSignIn."""
 

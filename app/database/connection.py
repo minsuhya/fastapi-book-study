@@ -55,9 +55,10 @@ class Database:
 
 
 class Settings(BaseSettings):
-    #  DATABASE_URL: Optional[
-    #  str] = f"mongodb://{os.getenv('MONGODB_USER')}:{os.getenv('MONGODB_PASS')}@{os.getenv('MONGODB_HOST')}:{os.getenv('MONGODB_PORT')}/"
     DATABASE_URL: Optional[str] = None
+    SECRET_KEY: str = "secret_key"  # jwt 비밀키
+    ACCESS_TOKEN_EXPIRES: int = 3600  # jwt 만료시간
+    ACCESS_TOKEN_ALGORITHM: str = "HS256"  # jwt 알고리즘
 
     async def initialize_database(self):
         print("database_url:", self.DATABASE_URL)
