@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from beanie import init_beanie, PydanticObjectId
-from motor.motor_asyncio import AsyncIOMotorClient
 from typing import Any, List, Optional
-from pydantic import BaseSettings, BaseModel
+
+from beanie import PydanticObjectId, init_beanie
 from dotenv import find_dotenv
-import os
+from motor.motor_asyncio import AsyncIOMotorClient
+from pydantic import BaseModel, BaseSettings
 
 
 class Database:
@@ -63,11 +63,11 @@ class Settings(BaseSettings):
     async def initialize_database(self):
         print("database_url:", self.DATABASE_URL)
         client = AsyncIOMotorClient(self.DATABASE_URL)
-        #  await init_beanie(database=client.get_default_database(),
-        await init_beanie(database=client['itoktok'],
+        #  await init_beanie(database=client['itoktok'],
+        await init_beanie(database=client.get_default_database(),
                           document_models=[
                               "app.models.events.Event",
-                              "app.models.users.User"
+                              "app.models.users.User",
                           ])
 
     class Config:

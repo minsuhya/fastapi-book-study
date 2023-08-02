@@ -10,7 +10,7 @@ from datetime import datetime
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
 
-from ..database.connection import Settings
+from app.database.connection import Settings
 
 settings = Settings()
 

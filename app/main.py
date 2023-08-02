@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes.users import user_router
-from .routes.events import event_router
-from .database.connection import Settings
 
-#  import uvicorn
+from app.database.connection import Settings
+from app.routes.events import event_router
+from app.routes.users import user_router
 
 app = FastAPI()
 settings = Settings()
@@ -38,5 +38,5 @@ async def init_db():
     await settings.initialize_database()
 
 
-#  if __name__ == "__main__":
-#  uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
