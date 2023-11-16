@@ -11,3 +11,5 @@ python-jose==3.3.0
 python-multipart==0.0.6
 sqlmodel==0.0.8
 uvicorn==0.23.1
+sqlalchemy==1.4.31
+pymysql==1.0.2
