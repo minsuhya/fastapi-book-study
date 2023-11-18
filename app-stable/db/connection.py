@@ -23,6 +23,7 @@ engine_url = create_engine(database_connection_string,
 def conn():
     SQLModel.metadata.create_all(engine_url)
 
+
 def get_session():
     with Session(engine_url) as session:
         yield session

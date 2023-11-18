@@ -3,7 +3,6 @@
 
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from typing import List
 from .db.connection import conn
 
 from .routes.users import user_router

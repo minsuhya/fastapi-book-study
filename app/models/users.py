@@ -27,7 +27,6 @@ class User(Document):
 
     class Settings:
         """Settings."""
-
         name = "users"
 
 
