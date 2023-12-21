@@ -3,7 +3,8 @@ version: "3.7"
 services:
   fastapi:
     # image: fastapi
-    build: .
+    build:
+      .
       # context: .
       # dockerfile: .
     command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
@@ -12,17 +13,24 @@ services:
     volumes:
       - ./app-stable:/code/app
     depends_on:
-      - mysql
+      - db
+    networks:
+      - fastnet
 
-  mysql:
-    image: mysql:8
-    restart: unless-stopped
+  db:
+    image: mariadb:10
+    restart: always
     ports:
-      - "33062:3306"
+      - 33062:3306
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
     env_file: .env
+    environment:
+      TZ: Asia/Seoul
+    networks:
+      - fastnet
 
 networks:
   fastnet:

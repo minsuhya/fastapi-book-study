@@ -2,14 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
-from ..database.connection import get_session
+from ..db.connection import get_session
 from ..models.events import Event, EventUpdate
 from typing import List
 from sqlmodel import select, delete
 
 event_router = APIRouter(tags=["Event"])
-
-events = []
 
 
 @event_router.get("/", response_model=List[Event])

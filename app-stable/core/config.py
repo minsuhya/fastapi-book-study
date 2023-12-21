@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from functools import lru_cache
+from dotenv import find_dotenv
 
 from pydantic import BaseSettings
 
@@ -15,9 +16,9 @@ class Settings(BaseSettings):
     MYSQL_PASSWORD: str
 
     class Config:
-        env_file = ".env"
+        env_file = find_dotenv(".env")
 
 
-@lru_cache()
+#@lru_cache()
 def get_settings():
     return Settings()

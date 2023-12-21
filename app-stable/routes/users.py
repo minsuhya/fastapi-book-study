@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Request, HTTPException, status
 
 from ..models.users import User, UserSignIn
+from ..main import templates
 
 user_router = APIRouter(tags=["User"])
 users = {}
@@ -28,3 +29,9 @@ async def sign_in_user(user: UserSignIn) -> dict:
                             detail="Wrong password")
     #  return users[user.email]
     return {"message": "User signed in"}
+
+
+@user_router.get("/signin")
+def sign_in_form(request: Request):
+    return templates.TemplateResponse('sign_in_form.html',
+                                      context={'request': request})
